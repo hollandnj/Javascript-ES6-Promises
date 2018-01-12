@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const url = 'https://randomuser.me/api/?results=20';
+    const url = 'https://randomuser.me/api/?results=5';
     fetch(url)
     .then((resp) => resp.json())
     .then((data) => this.setState({ users: data.results })); 
@@ -20,7 +20,7 @@ class App extends Component {
 
   render() {
     let list = this.state.users.map(user =>{
-      return <User user={user}/>
+      return <User key={user.id.value} user={user}/>
     });
     return (
       <div className="App">
