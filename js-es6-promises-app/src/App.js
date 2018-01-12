@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import User from './User';
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class App extends Component {
 
   render() {
     let list = this.state.users.map(user =>{
-      return <div>{user.name.first} {user.name.last}</div>
+      return <User user={user}/>
     });
     return (
       <div className="App">
