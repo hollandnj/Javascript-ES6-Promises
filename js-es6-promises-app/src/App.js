@@ -19,8 +19,7 @@ class App extends Component {
     .then((data) => this.setState({ users: data.results })); 
 
     // Two fetches, with merged result
-    /*
-    const url = 'https://randomuser.me/api/?results=2';
+    /*const url = 'https://randomuser.me/api/?results=2';
     
     let fetch1 = fetch(url)
     .then((resp) => resp.json())
@@ -28,7 +27,13 @@ class App extends Component {
 
     let fetch2 = fetch(url)
     .then((resp) => resp.json())
-    .then((data) => {return data.results})
+    .then((data) => {
+      return data.results.map(user => {
+        user.name.last = user.name.last + '-smith';
+        console.log(user);
+        return user;
+      });
+    })
 
     Promise.all([fetch1, fetch2])
     .then(results => {
