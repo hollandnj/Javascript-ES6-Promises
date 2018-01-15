@@ -12,15 +12,35 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // Single fetch
     const url = 'https://randomuser.me/api/?results=5';
     fetch(url)
     .then((resp) => resp.json())
     .then((data) => this.setState({ users: data.results })); 
+
+    // Two fetches, with merged result
+    /*
+    const url = 'https://randomuser.me/api/?results=2';
+    
+    let fetch1 = fetch(url)
+    .then((resp) => resp.json())
+    .then((data) => {return data.results}) 
+
+    let fetch2 = fetch(url)
+    .then((resp) => resp.json())
+    .then((data) => {return data.results})
+
+    Promise.all([fetch1, fetch2])
+    .then(results => {
+        let items = [].concat.apply([],results);
+        this.setState({ users: items});
+    })
+    */
   }
 
   render() {
     let list = this.state.users.map(user =>{
-      return <User key={user.id.value} user={user}/>
+      return <User key={user.email} user={user}/>
     });
     return (
       <div className="App">
